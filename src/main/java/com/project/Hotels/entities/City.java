@@ -66,62 +66,7 @@ public class City {
 
     }
 
-    public Hotel[] getNearestThreeHotels(Set<Hotel> hotels){
-
-        double firstMin = Double.MAX_VALUE;
-        double secMin = Double.MAX_VALUE;
-        double thirdMin = Double.MAX_VALUE;
-
-        Hotel firstHotel = new Hotel();
-        Hotel secHotel = new Hotel();
-        Hotel thirdHotel = new Hotel();
-
-        double x1 , y1;
-        double x2 = this.getLocation().getX();
-        double y2 = this.getLocation().getY();
-        double distance;
-
-        for (Hotel hotel: hotels) {
-             x1 = hotel.getLocation().getX();
-             y1 = hotel.getLocation().getY();
-
-            distance = Math.sqrt( Math.pow( (x1-x2) , 2) + Math.pow( (y1-y2), 2));
-            System.out.println(hotel.getName() + " = " + distance);
-
-            if(distance < firstMin){
-                thirdMin = secMin;
-                thirdHotel = secHotel;
-
-                secMin = firstMin;
-                secHotel = firstHotel;
-
-                firstMin = distance;
-                firstHotel = hotel;
-            }
-
-           else if (distance < secMin && distance >= firstMin)
-            {
-                thirdMin = secMin;
-                thirdHotel = secHotel;
-                secMin =distance;
-                secHotel = hotel;
-
-            }
-
-            else if (distance < thirdMin && distance >= secMin)
-            {
-                thirdMin = distance;
-                thirdHotel = hotel;
-            }
-
-        }
-
-        Hotel[] nearestHotels = new Hotel[3];
-
-        nearestHotels[0] = firstHotel;   System.out.println("first = " + firstHotel.getName());
-        nearestHotels[1] = secHotel;    System.out.println("Second = " + secHotel.getName());
-        nearestHotels[2] = thirdHotel;  System.out.println("Third = " + thirdHotel.getName());
-
-        return nearestHotels;
-    }
+   public void setHotelDistances(Set<Hotel> hotels){
+            hotels.forEach(hotel -> hotel.setDistanceFromSpecificCity(this));
+   }
 }

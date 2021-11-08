@@ -26,4 +26,9 @@ public class HotelController {
     public ArrayList<String> getAllNearestHotels(@PathVariable Integer id){
         return  hotelService.getAllNearestHotels(id);
     }
+
+    @RequestMapping("/cities/{id}/nearestHotels/{number}") //get method as default
+    public ArrayList<String> getAllNearestNumberHotels(@PathVariable Integer id , @PathVariable Integer number){
+        return  hotelService.getAllNearestHotels(id , number);
+    }
 }

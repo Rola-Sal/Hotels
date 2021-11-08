@@ -26,6 +26,23 @@ public class Hotel {
     @JoinColumn(name = "location_id")
     Location location ;
 
+
+
+    Double distanceFromSpecificCity ;
+
+    public Double getDistanceFromSpecificCity() {
+        return distanceFromSpecificCity;
+    }
+
+    public void setDistanceFromSpecificCity(City city){
+        double x1 = this.getLocation().getX();
+        double y1 = this.getLocation().getY();
+        double x2 = city.getLocation().getX();
+        double y2 = city.getLocation().getY();
+
+        distanceFromSpecificCity = Math.sqrt( Math.pow( (x1-x2) , 2) + Math.pow( (y1-y2), 2));
+    }
+
     public int getId() {
         return id;
     }
